@@ -57,3 +57,7 @@ button {
 button :hover {
   color: #4f4f4f;
 }
+
+.gitLink {
+  text-align: center !important;
+}
