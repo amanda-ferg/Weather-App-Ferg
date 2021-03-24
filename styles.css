@@ -1,22 +1,28 @@
 h1,
 h2 {
   margin: 5px 5px 5px 20px;
-  text-align: center;
 }
 h1 {
   font-size: 55px !important;
 }
-ul {
-  text-align: center;
-  list-style: none;
-}
+
 li {
   list-style: none;
-  text-align: center;
+}
+
+button {
+  margin: 2px;
+  border-radius: 2px;
+  border: 1px solid #4f4f4f;
+}
+
+button :hover {
+  color: #4f4f4f;
 }
 .container {
   color: black;
   font-family: "Montserrat", sans-serif;
+  text-align: center;
 }
 .box {
   border: 2px solid #ff50bf;
@@ -38,26 +44,16 @@ li {
   font-weight: bold;
   font-size: 15px;
 }
-.col {
-  transition: all 200ms ease-in-out;
-  text-align: center;
-}
+
 .tempType {
-  text-align: center;
-  font-size: 12px;
+  font-size: 16px;
+  position: relative;
+  top: -15px;
+}
+
+.celsius,
+.fahrenheit,
+.link {
   text-decoration: none;
-}
-
-button {
-  margin: 5px;
-  border-radius: 5px;
-  border: 1px solid #4f4f4f;
-}
-
-button :hover {
-  color: #4f4f4f;
-}
-
-.gitLink {
-  text-align: center !important;
+  color: #484649;
 }

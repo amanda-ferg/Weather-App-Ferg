@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="styles.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://kit.fontawesome.com/311d920649.js" crossorigin="anonymous"></script>
@@ -19,20 +20,30 @@
         <div class="box">
             <span class="searchCity">
                 <form id="search-form">
-                    <input type="text" placeholder="Search Your City" autocomplete="off" autofocus="on"
-                        id="search-input-text" />
-                    <input type="submit" value="Search" id="search" />
-                </form>
+                    <input type="text" 
+                            placeholder="Search Your City" 
+                            autocomplete="off" 
+                            autofocus="on"
+                            id="search-input-text" />
+                    <input type="submit" 
+                            value="Search" 
+                            id="search" />
                 <button id="locationButton">
                     <i class="fas fa-location-arrow"></i>
                 </button>
+                </form>
             </span>
 
             <h1>Bellefonte</h1>
             <h2>Friday 10:00</h2>
             <div class="row">
                 <div class="col">
-                    <li class="mainTemperature" id="temperature">27°</li>
+                    <li class="mainTemperature" id="temperature">27
+                        <span class="tempType">
+                            <a href="#" class="celsius">°C</a> | 
+                            <a href="#" class ="fahrenheit">°F</a>
+                        </span>
+                    </li>
                     <li class="highLow">H: 36° | L: 19°</li>
                 </div>
                 <div class="col">
@@ -86,12 +97,8 @@
                     </ul>
                 </div>
             </div>
-            <span class="tempType">
-                <a href="#" id="celsius">Celsius</a> |
-                <a href="#" id="fahrenheit">Fahrenheit</a>
-            </span>
         </div>
-        <span class=gitLink> <a href="https://github.com/amanda-ferg/Weather-App-Ferg" class="link">Open-source code</a>
+        <span class="gitLink"> <a href="https://github.com/amanda-ferg/Weather-App-Ferg" class="link">Open-source code</a>
         by Amanda Ferg</span>
     </div>
 
