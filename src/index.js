@@ -1,6 +1,5 @@
-//current day and time
+function formatDate() {
 let now = new Date();
-console.log(now);
 let days = [
   "Sunday",
   "Monday",
@@ -22,8 +21,33 @@ if (minutes < 10) {
 }
 let h2 = document.querySelector("h2");
 h2.innerHTML = `${day}  ${hours}:${minutes}`;
+}
 
-//search engine
+
+function displayForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = null;
+  let forecast = null;
+
+  for (let index = 0; index < 4; index++) {
+    let forecast = response.data.list[index];
+    console.log(response.data.list[index]);
+    forecastElement.innerHTML += `
+    <div class="col">
+      <ul id="forecast">
+        <li class="day">${formatDate(day)}</li>
+        <li>${Math.round(forecast.main.temp_max)}°</li>
+        <img 
+          src="http://openweathermap.org/img/wn/${
+          forecast.weather[0].icon
+          }@2x.png" 
+         />
+        <li>L:${Math.round(forecast.main.temp_min)}°</li>
+      </ul>
+    </div>
+     `;
+  }
+}
 
 function searchCity(city) {
   let apiKey = "523153ffc9ade9361b141e46da936c85";
@@ -32,6 +56,9 @@ function searchCity(city) {
   let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${units}`;
 
   axios.get(apiUrl).then(showTemperature);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function search(event) {
@@ -92,6 +119,8 @@ function displayCelsius(event) {
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
+
+window.onload = formatDate;
 
 let celsiusTemperature = null;
 
