@@ -1,45 +1,48 @@
-function formatDate() {
-let now = new Date();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday"
-];
-
-let day = days[now.getDay()];
-let hours = now.getHours();
-if (hours < 10) {
-  hours = `0${hours}`;
-}
-let minutes = now.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
-let h2 = document.querySelector("h2");
-h2.innerHTML = `${day}  ${hours}:${minutes}`;
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  let day = days[date.getDay()];
+  return `${day} ${formatHours(timestamp)}`;
 }
 
+function formatHours(timestamp) {
+  let time = new Date(timestamp);
+  
+  let hours = time.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = time.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${hours}:${minutes}`;
+}
 
 function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = null;
   let forecast = null;
-
   for (let index = 0; index < 4; index++) {
     let forecast = response.data.list[index];
-    console.log(response.data.list[index]);
+    
     forecastElement.innerHTML += `
     <div class="col">
-      <ul id="forecast">
-        <li class="day">${formatDate(day)}</li>
+      <ul>
+        <li class="day">${formatHours(forecast.dt * 1000)}</li>
         <li>${Math.round(forecast.main.temp_max)}°</li>
         <img 
           src="http://openweathermap.org/img/wn/${
-          forecast.weather[0].icon
+            forecast.weather[0].icon
           }@2x.png" 
          />
         <li>L:${Math.round(forecast.main.temp_min)}°</li>
@@ -72,13 +75,16 @@ function search(event) {
 
 function showTemperature(response) {
   let iconElement = document.querySelector("#weatherIcon");
+  let dateElement = document.querySelector("h2");
   
-celsiusTemperature = response.data.main.temp;
+  celsiusTemperature = response.data.main.temp;
 
   document.querySelector("h1").innerHTML = response.data.name;
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
   document.querySelector("#temperature").innerHTML = Math.round(
     celsiusTemperature
   );
+  document.querySelector("#description").innerHTML = response.data.weather[0].description;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
@@ -119,8 +125,6 @@ function displayCelsius(event) {
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
-
-window.onload = formatDate;
 
 let celsiusTemperature = null;
 
